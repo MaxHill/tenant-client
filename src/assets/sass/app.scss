@@ -1,0 +1,12 @@
+// Reset / Normalize
+// Uncomment below line if not using bootstrap.
+// @import 'base/reset';
+
+// Base
+@import 'base/variables';
+@import 'base/presets';
+@import 'base/typography';
+
+// Components
+@import 'components/hero';
+@import 'components/welcome';
