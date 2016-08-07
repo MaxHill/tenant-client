@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Bus from '../bus';
 
 export default class {
-    constructor() {
+    constructor(path = '') {
         let vue = new Vue({});
-        this.path = '';
+        this.path = path;
         this.resource = vue.$resource(this.path);
     }
 
