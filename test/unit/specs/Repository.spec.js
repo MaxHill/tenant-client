@@ -22,8 +22,26 @@ describe('Repository', () => {
     });
 
     it('should be able to get all', () => {
-        let request = repo.get();
+        let resource = sinon.spy(repo.resource, 'get');
+        let response = repo.get();
 
-        expect(request).to.equal(false);
+        expect(resource.called).to.equal(true);
+        expect(response.then).to.be.a('function');
+    });
+
+    it('should be able to get one', () => {
+        let resource = sinon.spy(repo.resource, 'get');
+        let response = repo.get(1);
+
+        expect(resource.calledWith({id: 1})).to.equal(true);
+        expect(response.then).to.be.a('function');
+    });
+
+    it('should be able to save', () => {
+        let resource = sinon.spy(repo.resource, 'save');
+        let response = repo.save({name: 'test'});
+
+        expect(resource.calledWith({name: 'test'})).to.equal(true);
+        expect(response.then).to.be.a('function');
     });
 });

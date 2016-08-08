@@ -8,11 +8,18 @@ export default class {
         this.resource = vue.$resource(this.path);
     }
 
-    get() {
+    get(id) {
+        if (typeof id !== 'undefined') {
+            return this.resource.get({id: id}).catch(this.emitError);
+        }
         return this.resource.get().catch(this.emitError);
     }
-    // post
+
+    save(data) {
+        return this.resource.save(data).catch(this.emitError);
+    }
     // save
+    // update
     // put
     // patch
     // delete
