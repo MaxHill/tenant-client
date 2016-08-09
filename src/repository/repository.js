@@ -7,7 +7,8 @@ export default class {
         let vue = new Vue();
 
         this.data = {
-            page: false
+            page: false,
+            include: false
         };
         this.path = path;
         this.resource = vue.$resource(this.path + '{/id}');
