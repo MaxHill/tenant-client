@@ -13,15 +13,15 @@
 
 <script>
     import Bus from '../bus';
-    import Repository from '../repository/repository';
+    import Repository from '../repository/Repository';
 
     export default {
         data() {
             return {};
         },
         ready() {
-            let repo = new Repository();
-            console.log(repo.resource);
+            let repo = new Repository('users');
+            repo.page(2).get();
             Bus.$emit('test');
         }
     };

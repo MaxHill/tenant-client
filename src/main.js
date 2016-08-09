@@ -7,7 +7,7 @@ import VueResource from 'vue-resource';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
-Vue.http.options.root = 'tenant.dev';
+Vue.http.options.root = 'http://tenant.dev';
 
 const Router = new VueRouter({history: true});
 
