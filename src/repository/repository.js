@@ -21,13 +21,14 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     get(id = false, parameters = {}) {
-        let url = id ? {id} : {};
-        let urlParameters = this.buildUrlParameters(parameters);
+        if (id) {
+            parameters.id = id;
+        }
+        let request = this.buildUrlParameters(parameters);
 
-        return this.resource.get(
-            url,
-            {params: urlParameters}
-        ).catch(this.emitError);
+        return this.resource
+            .get(request)
+            .catch(this.emitError);
     }
 
     /**

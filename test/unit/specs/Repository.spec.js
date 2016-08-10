@@ -66,7 +66,7 @@ describe('Repository', () => {
         let resource = sinon.spy(repo.resource, 'get');
         let response = repo.page(2).get();
 
-        expect(resource.calledWith({}, {params: {page: 2}})).to.equal(true);
+        expect(resource.calledWith({page: 2})).to.equal(true);
         expect(response.then).to.be.a('function');
     });
 
@@ -74,13 +74,7 @@ describe('Repository', () => {
         let resource = sinon.spy(repo.resource, 'get');
         let response = repo.include(['users']).get();
 
-        expect(resource.calledWith(
-            {},
-            {
-                params: {
-                    include: ['users']
-                }
-            })).to.equal(true);
+        expect(resource.calledWith({include: ['users']})).to.equal(true);
         expect(response.then).to.be.a('function');
     });
 
@@ -89,12 +83,9 @@ describe('Repository', () => {
         let response = repo.include(['users']).page(2).get();
 
         expect(resource.calledWith(
-            {},
             {
-                params: {
-                    include: ['users'],
-                    page: 2
-                }
+                include: ['users'],
+                page: 2
             })).to.equal(true);
         expect(response.then).to.be.a('function');
     });
@@ -107,13 +98,10 @@ describe('Repository', () => {
             .get(null, {test: 'test'});
 
         expect(resource.calledWith(
-            {},
             {
-                params: {
-                    include: ['users'],
-                    page: 2,
-                    test: 'test'
-                }
+                include: ['users'],
+                page: 2,
+                test: 'test'
             })).to.equal(true);
         expect(response.then).to.be.a('function');
     });
