@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "parallelshell 'npm run webpack' 'npm run watch:icons'",
-    "webpack": "node build/dev-server.js && echo 'Done!' ",
+    "webpack": "node build/dev-server.js && echo 'Done!'",
     "icons": "svg-sprite-generate -d src/assets/icons -o src/assets/icons.svg",
     "watch:icons": "onchange 'src/assets/icons/*.svg' -- npm run icons",
     "build": "node build/build.js",
@@ -21,6 +21,7 @@
   "dependencies": {
     "vue": "^1.0.21",
     "vue-router": "^0.7.13",
+    "vue-resource": "^0.9.3",
     "babel-runtime": "^6.0.0"
   },
   "devDependencies": {
@@ -77,7 +78,6 @@
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.3.0",
-    "vue-resource": "^0.9.3",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",

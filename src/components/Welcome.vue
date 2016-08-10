@@ -13,15 +13,14 @@
 
 <script>
     import Bus from '../bus';
-    import Repository from '../repository/Repository';
+    import Auth from '../Auth';
 
     export default {
         data() {
             return {};
         },
         ready() {
-            let repo = new Repository('users');
-            repo.page(2).get();
+            Auth.login({email: 'max@hilloco.se', password: 'secret'});
             Bus.$emit('test');
         }
     };
