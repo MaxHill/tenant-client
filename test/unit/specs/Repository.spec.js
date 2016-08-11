@@ -105,4 +105,33 @@ describe('Repository', () => {
             })).to.equal(true);
         expect(response.then).to.be.a('function');
     });
+
+    it('should handle error', () => {
+        let emitSpy = sinon.stub(repo, 'emitError');
+        // Stub resource methods
+        [
+            sinon.stub(repo.resource, 'get'),
+            sinon.stub(repo.resource, 'save'),
+            sinon.stub(repo.resource, 'update'),
+            sinon.stub(repo.resource, 'delete')
+        ].forEach(stub => {
+            // Return rejected promises
+            stub.returns(Promise.reject('Rejected from test'));
+        });
+
+        // Call repo methods (all will be rejected)
+        let promises = [
+            repo.get(),
+            repo.create(),
+            repo.update({id: 1}),
+            repo.delete(1)
+        ];
+
+        // Make assertions after all promises have been rejected.
+        return Promise.all(promises).then(() => {
+            sinon.assert.callCount(emitSpy, 4);
+        }, () => {
+            throw new Error('All promises was not rejected/resolved');
+        });
+    });
 });

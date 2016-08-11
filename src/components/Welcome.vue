@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Bus from '../bus';
+    import Bus from '../Bus';
     import Auth from '../Auth';
 
     export default {
@@ -20,7 +20,8 @@
             return {};
         },
         ready() {
-            Auth.login({email: 'max@hilloco.se', password: 'secret'});
+            let login = Auth.login({email: 'max@hilloco.se', password: 'secret'});
+            console.log('Welcome.vue', login);
             Bus.$emit('test');
         }
     };

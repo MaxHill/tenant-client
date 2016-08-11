@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Bus from '../bus';
+import Bus from '../Bus';
 
 export default class {
 

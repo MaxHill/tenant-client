@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "parallelshell 'npm run webpack' 'npm run watch:icons'",
     "webpack": "node build/dev-server.js && echo 'Done!'",
-    "icons": "svg-sprite-generate -d src/assets/icons -o src/assets/icons.svg",
-    "watch:icons": "onchange 'src/assets/icons/*.svg' -- npm run icons",
+    "icons": "node_modules/svg-sprite-generator/bin/svg-sprite-generate -d src/assets/images/icons -o src/assets/images/icons.svg && echo 'Icons generated!'",
+    "watch:icons": "node_modules/onchange/cli.js 'src/assets/images/icons/*.svg' -- npm run icons",
     "build": "node build/build.js",
     "unit": "node test/unit/runner.js",
     "e2e": "node test/e2e/runner.js",

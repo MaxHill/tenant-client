@@ -1,9 +1,10 @@
 import Vue from 'vue';
 // import Bus from './bus';
 
-const LOGIN_URL = 'authenticate';
-
 export default {
+
+    resource: Vue,
+    loginUrl: 'authenticate',
 
     // User object will let us check authentication status
     user: {
@@ -12,9 +13,9 @@ export default {
     },
 
     // Send a request to the login URL and save the returned JWT
-    login(credentials) {
-        Vue.http.post(LOGIN_URL, credentials).then(data => {
-            data = data.data.data;
+    login(credentials, callback) {
+        this.resource.http.post(this.loginUrl, credentials).then(response => {
+            let data = response.data.data;
             localStorage.setItem('token', data.token);
             localStorage.setItem('timeout', data.timeout);
 
@@ -22,7 +23,7 @@ export default {
             // eslint-disable-next-line
             Vue.http.headers.common['Authorization'] = data.token;
 
-            console.log('Logged in.. redirect');
+            callback();
         });
     },
 
