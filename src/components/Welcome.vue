@@ -22,6 +22,7 @@
         ready() {
             let login = Auth.login({email: 'max@hilloco.se', password: 'secret'});
             console.log('Welcome.vue', login);
+            console.log('Welcome.vue', Auth.checkAuth());
             Bus.$emit('test');
         }
     };

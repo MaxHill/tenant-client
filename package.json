@@ -11,6 +11,7 @@
     "watch:icons": "node_modules/onchange/cli.js 'src/assets/images/icons/*.svg' -- npm run icons",
     "build": "node build/build.js",
     "unit": "node test/unit/runner.js",
+    "watch:unit": "karma start test/unit/karma.conf.js",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
@@ -19,10 +20,11 @@
     "generate:test": "node  build/generate/test.js"
   },
   "dependencies": {
+    "babel-runtime": "^6.0.0",
+    "moment": "^2.14.1",
     "vue": "^1.0.21",
-    "vue-router": "^0.7.13",
     "vue-resource": "^0.9.3",
-    "babel-runtime": "^6.0.0"
+    "vue-router": "^0.7.13"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
