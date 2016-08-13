@@ -1,5 +1,6 @@
 import Auth from '../../../src/Auth';
 import Vue from 'vue';
+import moment from 'moment';
 
 describe('Auth component', () => {
     let sandbox;
@@ -48,10 +49,30 @@ describe('Auth component', () => {
     });
 
     it('should be able to check if logged in', () => {
-        sandbox.stub(localStorage, 'getItem').returns('FAKETOKEN');
-        // Return different for getting timeout
+        let timeout = moment()
+            .add(1, 'hours')
+            .format('YYYY-MM-DD H:m:s');
+        let ls = sandbox.mock(localStorage);
+        ls.expects('getItem').withArgs('token').returns('FAKETOKEN');
+        ls.expects('getItem').withArgs('timeout').returns(timeout);
+
         let loggedIn = auth.checkAuth();
 
         expect(loggedIn).to.equal(true);
+        expect(auth.user.authenticated).to.equal(true);
+    });
+
+    it('should not count as logged in if timout reached', () => {
+        let timeout = moment()
+            .subtract(1, 'seconds')
+            .format('YYYY-MM-DD H:m:s');
+        let ls = sandbox.mock(localStorage);
+        ls.expects('getItem').withArgs('token').returns('FAKETOKEN');
+        ls.expects('getItem').withArgs('timeout').returns(timeout);
+
+        let loggedIn = auth.checkAuth();
+
+        expect(loggedIn).to.equal(false);
+        expect(auth.user.authenticated).to.equal(false);
     });
 });
