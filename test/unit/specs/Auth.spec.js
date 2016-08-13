@@ -15,16 +15,7 @@ describe('Auth component', () => {
         sandbox.restore();
     });
 
-    it('should be able to login', () => {
-        let post = sandbox.spy(auth.resource.http, 'post');
-        let credentials = {email: 'test@email.com', password: 'secret'};
-
-        auth.login(credentials);
-
-        expect(post.calledWith(auth.loginUrl, credentials)).to.equal(true);
-    });
-
-    it('should set Authorization header on successfull login', () => {
+    it('should be able to login and set Auth header', () => {
         let callback = sinon.spy();
         let post = sandbox.stub(auth.resource.http, 'post');
         let credentials = {email: 'test@email.com', password: 'secret'};
@@ -41,6 +32,7 @@ describe('Auth component', () => {
             // eslint-disable-next-line
             let token = Vue.http.headers.common['Authorization'];
 
+            expect(post.calledWith(auth.loginUrl, credentials)).to.equal(true);
             expect(token).to.equal('FAKETOKEN');
             expect(callback.called).to.equal(true);
         }, () => {
