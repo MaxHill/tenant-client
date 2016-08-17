@@ -7,7 +7,8 @@ export default {
     resource: Vue,
     loginUrl: 'authenticate',
     user: {
-        authenticated: false
+        authenticated: false,
+        data: {}
     },
 
     /**
@@ -26,6 +27,7 @@ export default {
                 localStorage.setItem('timeout', data.timeout);
 
                 this.user.authenticated = true;
+                this.user.data = data.user.data;
                 // eslint-disable-next-line
                 Vue.http.headers.common['Authorization'] = data.token;
 

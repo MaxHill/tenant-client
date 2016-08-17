@@ -40,7 +40,6 @@
             </a>
 
             <nav class="nav navbar-nav pull-sm-right">
-
                 <a
                     class="nav-item nav-link"
                     v-link="{ path: '/' }"

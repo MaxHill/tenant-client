@@ -22,7 +22,15 @@ describe('Auth component', () => {
 
         post.returns(Promise.resolve({
             data: {
-                data: {token: 'FAKETOKEN', timeout: '2017-01-01 00:00:00'}
+                data: {
+                    token: 'FAKETOKEN',
+                    timeout: '2017-01-01 00:00:00',
+                    user: {
+                        data: {
+                            name: 'Test user'
+                        }
+                    }
+                }
             }
         }));
 
@@ -34,6 +42,7 @@ describe('Auth component', () => {
 
             expect(post.calledWith(auth.loginUrl, credentials)).to.equal(true);
             expect(token).to.equal('FAKETOKEN');
+            expect(auth.user.data.name).to.equal('Test user');
             expect(callback.called).to.equal(true);
         }, () => {
             throw new Error('Login promise got rejected.');
@@ -66,5 +75,18 @@ describe('Auth component', () => {
 
         expect(loggedIn).to.equal(false);
         expect(auth.user.authenticated).to.equal(false);
+    });
+
+    it('should be able to logout', () => {
+        auth.user.authenticated = true;
+        auth.user.data = {name: 'Test Name'};
+        let remove = sinon.spy(localStorage, 'removeItem');
+
+        auth.logout();
+
+        expect(remove.calledWith('id_token')).to.equal(true);
+        expect(remove.calledWith('timeout')).to.equal(true);
+        expect(auth.user.authenticated).to.equal(false);
+        expect(Object.keys(auth.user.data).length).to.equal(0);
     });
 });
