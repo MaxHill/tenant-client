@@ -1,7 +1,10 @@
 <template>
     <nav class="Submenu">
         <div class="Submenu__container Container">
-            <a v-for="link in links" v-link="{path: link.path}" class="Submenu__link">
+            <a
+                v-for="link in links"
+                v-link="{path: link.path, exact: true, activeClass: 'Submenu__link--active'}"
+                class="Submenu__link">
                 <svg class="Submenu__icon">
                     <use xlink:href='#{{ link.icon }}'>
                 </svg>

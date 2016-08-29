@@ -1,7 +1,6 @@
 <template>
     <div>
         <submenu :links="links"></submenu>
-        <p>Settings view<p>
         <router-view></router-view>
     </div>
 </template>

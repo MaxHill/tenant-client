@@ -6,9 +6,11 @@
 .Submenu__container {
     display:flex;
     justify-content: center;
+    max-width:100%;
 }
 
 .Submenu__link {
+    flex:1;
     padding: .7rem 1rem;
     color: $danube;
     text-decoration: none;
@@ -16,10 +18,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-bottom: 2px solid transparent;
+    transition: $transition-fast;
 }
+
+.Submenu__link--active,
 .Submenu__link:hover,
 .Submenu__link:active {
-    background:lighten($rhino, 5%);
+    border-color: $brand-color;
 }
 
 .Submenu__icon {
@@ -41,8 +47,10 @@
 @media (min-width: $break-small) {
     .Submenu__container {
         justify-content: flex-end;
+        max-width: 95%;
     }
     .Submenu__link {
+        flex:0;
         font-size: .7rem;
         line-height: .7rem;
         padding: 1rem 1rem;

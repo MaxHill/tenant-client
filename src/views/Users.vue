@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <p>Users view<p>
-        <!-- Template content -->
+    <div class="Container">
+       <p>Some sort of user listing...</p>
     </div>
 </template>
 
@@ -12,9 +11,6 @@
      */
 
     export default {
-        components: {
-            // Components
-        },
         methods: {
             // Methods
         }
