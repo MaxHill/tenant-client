@@ -2,7 +2,7 @@
     <nav class="Menu" :class="{'Menu--closed': !vissible}">
         <div class="Container Menu__container">
             <div class="Menu__section Menu__profile">
-                <a @click="close()" v-link="users/me">
+                <a v-if="user.authenticated" @click="close()" v-link="users/me">
                     <img class="Menu__avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/48.jpg" alt="avatar">
                 </a>
             </div>
@@ -22,8 +22,8 @@
             </div>
             <div class="Menu__section Menu__links">
                 <div v-if="user.authenticated">
-                    <a class="Menu__link" @click="close()" v-link="{ path: '/' }">Home</a>
-                    <a class="Menu__link" @click="close()" v-link="{ path: '/hello' }">Hello?</a>
+                    <a class="Menu__link" @click="close()" v-link="{ path: '/dashboard' }">Dashboard</a>
+                    <a class="Menu__link" @click="close()" v-link="{ path: '/settings' }">Settings</a>
                 </div>
                 <div v-if="!user.authenticated">
                     <a class="Menu__link" @click="close()" v-link="{ path: '/login' }">Login</a>

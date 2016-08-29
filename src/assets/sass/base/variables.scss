@@ -11,8 +11,7 @@ $anakiwa: #A6DAFF; // both in menu and view
 $danube: #79A0DC; // submenu background
 
 $brand-gradient: linear-gradient(135deg, #42b9ed 0%,#60ddc5 100%);
-$danger-gradient: linear-gradient(135deg, #DD7A60 0%,#60ddc5 100%);
-$danger-gradient: linear-gradient(135deg, #ff5f62 0%,#ff2f65 100%);
+$danger-gradient: linear-gradient(135deg, #ff2f65 0%,#ff5f62 100%);
 $success-gradient: linear-gradient(135deg, #60DD81 0%,#60ddc5 100%);
 
 //transitions
@@ -21,3 +20,6 @@ $transition: all .3s cubic-bezier(.45,.01,.51,1);
 // Breakpoints
 $break-small: 600px;
 $break-medium: 800px;
+
+// Sizes
+$menu-height: 55px;

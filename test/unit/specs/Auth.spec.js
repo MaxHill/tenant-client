@@ -21,7 +21,7 @@ describe('Auth component', () => {
         let credentials = {email: 'test@email.com', password: 'secret'};
         let setItem = sinon.spy(localStorage, 'setItem');
 
-        post.returns(Promise.resolve({
+        let response = {
             data: {
                 data: {
                     token: 'FAKETOKEN',
@@ -33,7 +33,9 @@ describe('Auth component', () => {
                     }
                 }
             }
-        }));
+        };
+
+        post.returns(Promise.resolve(response));
 
         let login = auth.login(credentials).then(callback);
 
@@ -41,6 +43,10 @@ describe('Auth component', () => {
             // eslint-disable-next-line
             let token = Vue.http.headers.common['Authorization'];
 
+            let setsUserAsJsonString = setItem.calledWith(
+                'user', JSON.stringify(response.data.data.user.data)
+            );
+            expect(setsUserAsJsonString).to.equal(true);
             expect(post.calledWith(auth.loginUrl, credentials)).to.equal(true);
             expect(token).to.equal('FAKETOKEN');
             expect(auth.user.data.name).to.equal('Test user');
@@ -58,7 +64,9 @@ describe('Auth component', () => {
         let ls = sandbox.mock(localStorage);
         ls.expects('getItem').withArgs('token').returns('FAKETOKEN');
         ls.expects('getItem').withArgs('timeout').returns(timeout);
-        ls.expects('getItem').withArgs('user').returns({name: 'Test User'});
+        ls.expects('getItem')
+            .withArgs('user')
+            .returns(JSON.stringify({name: 'Test User'}));
 
         let loggedIn = auth.checkAuth();
 

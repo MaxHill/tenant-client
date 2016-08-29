@@ -1,0 +1,50 @@
+.Submenu {
+    width: 100%;
+    background: $rhino;
+}
+
+.Submenu__container {
+    display:flex;
+    justify-content: center;
+}
+
+.Submenu__link {
+    padding: .7rem 1rem;
+    color: $danube;
+    text-decoration: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Submenu__link:hover,
+.Submenu__link:active {
+    background:lighten($rhino, 5%);
+}
+
+.Submenu__icon {
+    width: 20px;
+    height: 20px;
+    stroke: $brand-color;
+    fill: $brand-color;
+}
+
+.Submenu__text {
+    margin-top: 10px;
+    font-size: .6rem;
+    line-height: .6rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+@media (min-width: $break-small) {
+    .Submenu__container {
+        justify-content: flex-end;
+    }
+    .Submenu__link {
+        font-size: .7rem;
+        line-height: .7rem;
+        padding: 1rem 1rem;
+    }
+}
