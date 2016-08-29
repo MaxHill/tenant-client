@@ -1,0 +1,31 @@
+.FormError {
+    padding:0 1rem 1rem 1rem;
+    margin:0;
+    min-height:3.2rem;
+}
+
+.FormError__error {
+    width: 100%;
+    padding: .4rem 1rem;
+    background: $danger-gradient;
+    list-style: none;
+    color: $white;
+    border-radius: 5px;
+}
+
+
+.FormError__transition-transition {
+    transition: all .4s ease;
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+
+
+.FormError__transition-enter, .FormError__transition-leave {
+    opacity: 0;
+    transform: translate3d(0,-10px,0);
+}
+
+.FormError__transition-enter {
+    transform: translate3d(0,10px,0);
+}

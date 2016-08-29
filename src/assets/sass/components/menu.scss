@@ -1,0 +1,94 @@
+$menu-height: 55px;
+.Menu {
+    background: $menu-color;
+    width: 100%;
+    overflow:hidden;
+}
+
+.Menu--closed {
+    height: $menu-height; // ems? variable?
+}
+
+.Menu__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Menu__section {
+    width: calc((100% - #{$menu-height}) * (1/2));
+    min-height: $menu-height; // ems? variable?
+}
+
+.Menu__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $menu-height;
+}
+
+.Menu__toggler {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Menu__toggleButton {
+    width: $menu-height;
+    height: $menu-height;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Menu__profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Menu__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.Menu__links {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Menu__link {
+    color: $anakiwa;
+    display: inline-block;
+    width: 100%;
+    line-height: $menu-height;
+    text-align: center;
+    text-decoration: none;
+}
+
+.Menu__link:hover,
+.Menu__link:active {
+    color: $cloud-burst;
+}
+
+@media (min-width: $break-small) {
+    .Menu__toggler {
+        display: none;
+    }
+    .Menu__links {
+        width: calc((100% - #{$menu-height}) * (1/2));
+        display:flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .Menu__logo {
+        width: $menu-height;
+    }
+    .Menu__link {
+        display: inline;
+        width: auto;
+        margin-left: 1rem;
+    }
+}

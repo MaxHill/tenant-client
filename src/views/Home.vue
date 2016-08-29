@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <welcome></welcome>
-        Im max
     </div>
 </template>
 

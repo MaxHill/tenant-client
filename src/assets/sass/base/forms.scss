@@ -1,0 +1,33 @@
+input,
+select,
+textarea {
+    padding: 0.5em 0.6em;
+    display: block;
+    border: 2px solid $danube;
+    border-radius: 4px;
+    vertical-align: middle;
+    outline: 0;
+    width: 100%;
+    background: transparent;
+}
+
+input:focus,
+textarea:focus {
+    border: 2px solid $anakiwa;
+}
+
+::-webkit-input-placeholder {
+   color: $danube;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: $danube;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $danube;
+}
+
+:-ms-input-placeholder {
+   color: $danube;
+}

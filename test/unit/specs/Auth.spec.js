@@ -19,6 +19,7 @@ describe('Auth component', () => {
         let callback = sinon.spy();
         let post = sandbox.stub(auth.resource.http, 'post');
         let credentials = {email: 'test@email.com', password: 'secret'};
+        let setItem = sinon.spy(localStorage, 'setItem');
 
         post.returns(Promise.resolve({
             data: {
@@ -44,6 +45,7 @@ describe('Auth component', () => {
             expect(token).to.equal('FAKETOKEN');
             expect(auth.user.data.name).to.equal('Test user');
             expect(callback.called).to.equal(true);
+            expect(setItem.callCount).to.equal(3);
         }, () => {
             throw new Error('Login promise got rejected.');
         });
@@ -56,11 +58,13 @@ describe('Auth component', () => {
         let ls = sandbox.mock(localStorage);
         ls.expects('getItem').withArgs('token').returns('FAKETOKEN');
         ls.expects('getItem').withArgs('timeout').returns(timeout);
+        ls.expects('getItem').withArgs('user').returns({name: 'Test User'});
 
         let loggedIn = auth.checkAuth();
 
         expect(loggedIn).to.equal(true);
         expect(auth.user.authenticated).to.equal(true);
+        expect(auth.user.data.name).to.equal('Test User');
     });
 
     it('should not count as logged in if timout reached', () => {

@@ -1,11 +1,19 @@
-$brand-color: #17ADFB;
-$danger-color: #c0392b;
-$success-color: #3CD27B;
+$brand-color: #40A4FF;
+$danger-color: #FF6F40;
+$success-color: #40FF8F;
 
-$black: #252525;
 $white: #fff;
-$gray: #e5e5e5;
-$dark-gray: #a9a9a9;
+$cloud-burst: #20324C; // Body background
+$menu-color: $brand-color;
+$rhino: #293D5E; // Also separator
+
+$anakiwa: #A6DAFF; // both in menu and view
+$danube: #79A0DC; // submenu background
+
+$brand-gradient: linear-gradient(135deg, #42b9ed 0%,#60ddc5 100%);
+$danger-gradient: linear-gradient(135deg, #DD7A60 0%,#60ddc5 100%);
+$danger-gradient: linear-gradient(135deg, #ff5f62 0%,#ff2f65 100%);
+$success-gradient: linear-gradient(135deg, #60DD81 0%,#60ddc5 100%);
 
 //transitions
 $transition: all .3s cubic-bezier(.45,.01,.51,1);

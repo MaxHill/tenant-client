@@ -1,6 +1,20 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    background: $cloud-burst;
+}
+body {
+    background: $cloud-burst;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
+}
+svg {
+    stroke: $anakiwa;
+    fill: $anakiwa;
+}
+
+.Container {
+    margin:0 auto;
+    width: 100%;
+    max-width: 95%;
 }

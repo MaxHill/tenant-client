@@ -1,25 +1,42 @@
 <template>
-    <div class="container">
-        <ul>
-            <li v-for="error in errors">{{ error.title }}</li>
+    <div class="Container LoginPage">
+        <ul class="FormError">
+            <li
+                class="FormError__error"
+                v-for="error in errors"
+                transition="FormError__transition"
+                >{{ error.message }}</li>
         </ul>
-        <form @submit.prevent="login()">
-            <div>
-                <label for="email">Email:</label><br>
-                <input type="text" v-model="credentials.email">
+        <form class="Form" @submit.prevent="login()">
+            <div class="Form__group">
+                <div class="Form__field">
+                    <label for="email">Email:</label><br>
+                    <input
+                        type="text"
+                        v-model="credentials.email"
+                        placeholder="John@example.com">
+                </div>
             </div>
-            <div>
-                <label for="password">Password:</label><br>
-                <input type="password" v-model="credentials.password">
+            <div class="Form__group">
+                <div class="Form__field">
+                    <label for="password">Password:</label><br>
+                    <input
+                        type="password"
+                        v-model="credentials.password"
+                        placeholder="SuperSecretPassword">
+                </div>
             </div>
 
-            <button
-                type="submit"
-                class="btn btn-success"
-                :disabled="loading"
-            >
-                {{ loading ? 'Authenticating..' : 'Login'; }}
-            </button>
+            <div class="Form__group">
+                <div class="Form__field">
+                    <button
+                        type="submit"
+                        class="Button Button--block"
+                        :disabled="loading">
+                        {{ loading ? 'Authenticating..' : 'Login'; }}
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </template>

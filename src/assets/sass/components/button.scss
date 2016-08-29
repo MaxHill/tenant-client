@@ -1,0 +1,30 @@
+.Button {
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    border-radius: 1.75rem;
+    background: $brand-gradient;
+    text-transform: uppercase;
+    color: $white;
+}
+
+.Button--block {
+    display: block;
+    width: 100%;
+}
+
+.Button--danger {
+    background: $danger-gradient;
+}
+
+.Button--success {
+    background: $success-gradient
+}

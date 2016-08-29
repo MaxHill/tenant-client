@@ -2,7 +2,7 @@ html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 100%/1.5;
     line-height: 1.5rem;
-    color: $black;
+    color: $anakiwa;
 
     @media (min-width: $break-small) {
         font-size:  110%;
@@ -75,7 +75,7 @@ code,
 pre {
     font-family: monospace, serif;
     font-size: 1em;
-    background: $gray;
+    background: $rhino;
     display: inline-block;
     border-radius: 3px;
     padding: 0 .5rem;
@@ -88,7 +88,7 @@ blockquote {
 
 blockquote:before {
     content: open-quote;
-    color: $gray;
+    color: $rhino;
     font-size: 4em;
     line-height: 0.1em;
     margin-right: 0.25em;

@@ -25,6 +25,7 @@ export default {
                 let data = response.data.data;
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('timeout', data.timeout);
+                localStorage.setItem('user', data.user.data);
 
                 this.user.authenticated = true;
                 this.user.data = data.user.data;
@@ -62,6 +63,7 @@ export default {
 
         if (jwt && timeout.diff(now, 'seconds') > 0) {
             this.user.authenticated = true;
+            this.user.data = localStorage.getItem('user');
             return true;
         }
         this.logout();
