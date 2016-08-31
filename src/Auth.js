@@ -29,8 +29,7 @@ export default {
 
                 this.user.authenticated = true;
                 this.user.data = data.user.data;
-                // eslint-disable-next-line
-                Vue.http.headers.common['Authorization'] = data.token;
+                this.setAuthHeader(data.token);
 
                 resolve(response);
             }, error => {
@@ -64,10 +63,16 @@ export default {
         if (jwt && timeout.diff(now, 'seconds') > 0) {
             this.user.authenticated = true;
             this.user.data = JSON.parse(localStorage.getItem('user'));
+            this.setAuthHeader(jwt);
             return true;
         }
         this.logout();
         return false;
+    },
+
+    setAuthHeader(token) {
+        // eslint-disable-next-line
+        Vue.http.headers.common['Authorization'] = 'Bearer ' + token;
     }
 
 };

@@ -1,0 +1,31 @@
+.Loader {
+    padding-top: 2rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: fade-in 5s linear 2s;
+}
+
+.Loader__text {
+    margin-top: 1.5rem;
+}
+.Loader__icon {
+    width: 40px;
+    height: 40px;
+}
+
+.Loader__transition-transition {
+    opacity: 1;
+    transition: $transition;
+    transition-delay: .2s;
+}
+
+.Loader__transition-enter {
+    opacity: 0;
+}
+.Loader__transition-leave {
+    opacity: 0;
+    display: none;
+}

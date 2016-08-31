@@ -48,7 +48,7 @@ describe('Auth component', () => {
             );
             expect(setsUserAsJsonString).to.equal(true);
             expect(post.calledWith(auth.loginUrl, credentials)).to.equal(true);
-            expect(token).to.equal('FAKETOKEN');
+            expect(token).to.equal('Bearer FAKETOKEN');
             expect(auth.user.data.name).to.equal('Test user');
             expect(callback.called).to.equal(true);
             expect(setItem.callCount).to.equal(3);
@@ -62,6 +62,7 @@ describe('Auth component', () => {
             .add(1, 'hours')
             .format('YYYY-MM-DD H:m:s');
         let ls = sandbox.mock(localStorage);
+
         ls.expects('getItem').withArgs('token').returns('FAKETOKEN');
         ls.expects('getItem').withArgs('timeout').returns(timeout);
         ls.expects('getItem')
@@ -70,9 +71,12 @@ describe('Auth component', () => {
 
         let loggedIn = auth.checkAuth();
 
+        // eslint-disable-next-line
+        let token = Vue.http.headers.common['Authorization'];
         expect(loggedIn).to.equal(true);
         expect(auth.user.authenticated).to.equal(true);
         expect(auth.user.data.name).to.equal('Test User');
+        expect(token).to.equal('Bearer FAKETOKEN');
     });
 
     it('should not count as logged in if timout reached', () => {
