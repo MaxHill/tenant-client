@@ -3,7 +3,8 @@ import Login from './views/Login';
 import Home from './views/Home';
 import Dashboard from './views/Dashboard';
 import Settings from './views/Settings';
-import Users from './views/Users';
+import UserList from './views/user/List';
+import UserEdit from './views/user/Edit';
 import Association from './views/Association';
 import Residence from './views/Residence';
 
@@ -23,7 +24,12 @@ export default {
                 component: Association
             },
             '/users': {
-                component: Users
+                component: UserList,
+                name: 'user-list'
+            },
+            '/users/:id': {
+                component: UserEdit,
+                name: 'user-edit'
             },
             '/residence': {
                 component: Residence

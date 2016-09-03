@@ -1,0 +1,39 @@
+.Cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.Cards__card {
+    border: 2px solid $danube;
+    border-radius: 5px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    max-width: 100%;
+}
+
+.Cards__image {
+    width: 60px;
+    max-width: 100%;
+    height: 60px;
+    margin-top: -32px;
+    border-radius: 30px;
+    border: 4px solid $cloud-burst;
+}
+
+.Cards__title {
+    margin-top: .5rem;
+    margin-bottom: 0;
+}
+
+.Cards__button {
+    box-sizing: content-box;
+    margin-bottom: -1.3rem;
+    border: 4px solid $cloud-burst;
+}

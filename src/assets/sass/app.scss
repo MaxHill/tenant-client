@@ -14,6 +14,9 @@
 @import 'components/button';
 @import 'components/submenu';
 @import 'components/loader';
-// Views
+@import 'components/cards';
+@import 'components/backlink';
 
+// Views
 @import 'views/login';
+@import 'views/edit-user';

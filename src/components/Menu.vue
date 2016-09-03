@@ -3,7 +3,7 @@
         <div class="Container Menu__container">
             <div class="Menu__section Menu__profile">
                 <a v-if="user.authenticated" @click="close()" v-link="users/me">
-                    <img class="Menu__avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/48.jpg" alt="avatar">
+                    <img class="Menu__avatar" v-bind:src="user.data.avatar" alt="avatar">
                 </a>
             </div>
             <div @click="close()" class="Menu__section Menu__logo">
