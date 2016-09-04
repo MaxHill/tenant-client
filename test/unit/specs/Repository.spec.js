@@ -134,4 +134,31 @@ describe('Repository', () => {
             throw new Error('All promises was not rejected/resolved');
         });
     });
+
+    it('should handle success', () => {
+        let emitSpy = sinon.stub(repo, 'emitSuccess');
+        // Stub resource methods
+        [
+            sinon.stub(repo.resource, 'save'),
+            sinon.stub(repo.resource, 'update'),
+            sinon.stub(repo.resource, 'delete')
+        ].forEach(stub => {
+            // Return rejected promises
+            stub.returns(Promise.resolve('Rejected from test'));
+        });
+
+        // Call repo methods (all will be resolve)
+        let promises = [
+            repo.create(),
+            repo.update({id: 1}),
+            repo.delete(1)
+        ];
+
+        // Make assertions after all promises have been rejected.
+        return Promise.all(promises).then(() => {
+            sinon.assert.callCount(emitSpy, 3);
+        }, () => {
+            throw new Error('All promises was not rejected/resolved');
+        });
+    });
 });

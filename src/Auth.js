@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import moment from 'moment';
-// import Bus from './bus';
 
 export default {
 

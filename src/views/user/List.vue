@@ -1,5 +1,5 @@
 <template>
-    <div class="Container">
+    <div class="Container Page">
         <loader v-if="loading"></loader>
         <div v-if="!loading" class="Cards">
             <div class="Cards__card" v-for="user in users">

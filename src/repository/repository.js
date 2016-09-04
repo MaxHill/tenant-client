@@ -37,7 +37,12 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     create(data) {
-        return this.resource.save(data).catch(this.emitError);
+        return this.resource
+            .save(data)
+            .then(data => {
+                this.emitSuccess(data, 'Succesfuly created');
+            })
+            .catch(this.emitError);
     }
 
     /**
@@ -46,7 +51,12 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     update(data) {
-        return this.resource.update({id: data.id}, data).catch(this.emitError);
+        return this.resource
+            .update({id: data.id}, data)
+            .then(data => {
+                this.emitSuccess(data, 'Succesfuly updated');
+            })
+            .catch(this.emitError);
     }
 
     /**
@@ -55,7 +65,12 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     delete(id) {
-        return this.resource.delete(id).catch(this.emitError);
+        return this.resource
+            .delete(id)
+            .then(data => {
+                this.emitSuccess(data, 'Succesfuly deleted');
+            })
+            .catch(this.emitError);
     }
 
     /**
@@ -69,6 +84,11 @@ export default class {
         return this;
     }
 
+    /*
+     * Iclude relationship
+     * @param {Array} relations Relation name.
+     * @return {Class} Self for further chaining.
+     */
     include(relations = []) {
         this.data.include = relations;
 
@@ -93,8 +113,21 @@ export default class {
     /**
      * Emit error to the application.
      * @param  {object} error Error object given from the api.
+     * @return {Promise} Returns the rejected promise.
      */
     emitError(error) {
         Bus.$emit('Notification_error', error);
+        return Promise.reject(error);
+    }
+
+    /**
+     * Emit success to the application.
+     * @param  {object} success Promise data to pass along.
+     * @param  {object} message Success message to display.
+     * @return {Promise} Returns resolved promise.
+     */
+    emitSuccess(success, message) {
+        Bus.$emit('Notification_success', message);
+        return Promise.resolve(success);
     }
 }

@@ -17,6 +17,7 @@ $success-gradient: linear-gradient(135deg, #60DD81 0%,#60ddc5 100%);
 //transitions
 $transition: all .3s cubic-bezier(.45,.01,.51,1);
 $transition-fast: all .15s cubic-bezier(.45,.01,.51,1);
+$transition-slow: all .4s cubic-bezier(.45,.01,.51,1);
 
 // Breakpoints
 $break-small: 600px;

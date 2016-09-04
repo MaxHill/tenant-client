@@ -60,7 +60,7 @@ describe('Auth component', () => {
     it('should be able to check if logged in', () => {
         let timeout = moment()
             .add(1, 'hours')
-            .format('YYYY-MM-DD H:m:s');
+            .format('YYYY-MM-DD HH:m:s');
         let ls = sandbox.mock(localStorage);
 
         ls.expects('getItem').withArgs('token').returns('FAKETOKEN');

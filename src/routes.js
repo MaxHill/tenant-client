@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard';
 import Settings from './views/Settings';
 import UserList from './views/user/List';
 import UserEdit from './views/user/Edit';
+import UserCreate from './views/user/Create';
 import Association from './views/Association';
 import Residence from './views/Residence';
 
@@ -30,6 +31,10 @@ export default {
             '/users/:id': {
                 component: UserEdit,
                 name: 'user-edit'
+            },
+            '/users/create': {
+                component: UserCreate,
+                name: 'user-create'
             },
             '/residence': {
                 component: Residence

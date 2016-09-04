@@ -9,7 +9,7 @@
                 v-bind:alt="user.name">
             <user-form
                 :user="user"
-                @submit.prevent="update">Update</user-form>
+                @submit.prevent="create">Create</user-form>
         </div>
     </div>
 </template>
@@ -20,16 +20,19 @@
      * @type {Object}
      */
     import UserRepository from '../../repository/User';
-    import Loader from '../../components/Loader';
     import Backlink from '../../components/Backlink';
     import UserForm from '../../components/forms/User';
 
     export default {
         data() {
             return {
-                id: this.$route.params.id,
-                user: false,
-                loading: false,
+                user: {
+                    name: '',
+                    email: '',
+                    password: '',
+                    residence: {data: {id: '', identifier: ''}},
+                    avatar: 'https://api.adorable.io/avatars/70/kurtgerm'
+                },
                 userRepository: new UserRepository()
             };
         },
@@ -40,24 +43,23 @@
                 return requestData;
             }
         },
-        components: {Loader, Backlink, UserForm},
-        methods: {
-            loadUser() {
-                this.loading = true;
-                this.userRepository
-                    .include('residence')
-                    .get(this.id)
-                    .then(user => {
-                        this.user = user.data.data;
-                        this.loading = false;
-                    });
-            },
-            update() {
-                this.userRepository.update(this.requestData);
-            }
+        components: {
+            Backlink,
+            UserForm
         },
-        ready() {
-            this.loadUser();
+        methods: {
+            create() {
+                this.userRepository
+                    .create(this.requestData)
+                    .then(user => {
+                        this.$router.go({
+                            name: 'user-edit',
+                            params: {
+                                id: user.data.data.id
+                            }
+                        });
+                    });
+            }
         }
     };
 </script>

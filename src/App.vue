@@ -2,6 +2,8 @@
     <div id="app">
         <menu></menu>
         <router-view></router-view>
+
+        <notifications></notifications>
         <!-- Don't let the icon sprite take up space -->
         <div style="display:none">
             {{{ icons }}}
@@ -13,18 +15,13 @@
 
 <script>
 import Menu from './components/Menu';
-import Bus from './Bus';
+import Notifications from './components/Notifications';
 
 export default {
     data() {
         return {icons: require('assets/images/icons.svg')};
     },
-    components: {Menu},
-    ready() {
-        Bus.$on('Notification_error', data => {
-            console.log('test', data);
-        });
-    }
+    components: {Menu, Notifications}
 };
 </script>
 
