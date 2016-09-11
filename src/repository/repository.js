@@ -116,7 +116,7 @@ export default class {
      * @return {Promise} Returns the rejected promise.
      */
     emitError(error) {
-        Bus.$emit('Notification_error', error);
+        Bus.$emit('Notification_error', error.data.errors);
         return Promise.reject(error);
     }
 
