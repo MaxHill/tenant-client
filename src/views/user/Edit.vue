@@ -9,7 +9,8 @@
                 v-bind:alt="user.name">
             <user-form
                 :user="user"
-                @submit.prevent="update">Update</user-form>
+                :residences="residences"
+                @submit.prevent="update()">Update</user-form>
         </div>
     </div>
 </template>
@@ -20,6 +21,7 @@
      * @type {Object}
      */
     import UserRepository from '../../repository/User';
+    import ResidenceRepository from '../../repository/Residence';
     import Loader from '../../components/Loader';
     import Backlink from '../../components/Backlink';
     import UserForm from '../../components/forms/User';
@@ -29,13 +31,15 @@
             return {
                 id: this.$route.params.id,
                 user: false,
-                loading: false,
-                userRepository: new UserRepository()
+                residences: false,
+                loading: true,
+                userRepository: new UserRepository(),
+                residenceRepository: new ResidenceRepository()
             };
         },
         computed: {
             requestData() {
-                let requestData = this.user;
+                let requestData = Object.assign({}, this.user);
                 requestData.residence = this.user.residence.data.id;
                 return requestData;
             }
@@ -43,21 +47,37 @@
         components: {Loader, Backlink, UserForm},
         methods: {
             loadUser() {
-                this.loading = true;
-                this.userRepository
+                return this.userRepository
                     .include('residence')
                     .get(this.id)
                     .then(user => {
                         this.user = user.data.data;
-                        this.loading = false;
                     });
             },
+            loadResidences() {
+                return this.residenceRepository
+                    .get()
+                    .then(residences => {
+                        this.residences = residences.data.data;
+                    });
+            },
+            loadData() {
+                this.loading = true;
+                let loaders = [
+                    this.loadUser(),
+                    this.loadResidences()
+                ];
+                Promise.all(loaders).then(() => {
+                    this.loading = false;
+                });
+            },
             update() {
+                console.log('update:', this.requestData);
                 this.userRepository.update(this.requestData);
             }
         },
         ready() {
-            this.loadUser();
+            this.loadData();
         }
     };
 </script>

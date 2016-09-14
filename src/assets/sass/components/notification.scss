@@ -35,11 +35,10 @@
 }
 
 .Notification__title {
-    background: green;
-}
-
-.Notification__details {
-    background: blue;
+    display: block;
+    width: 100%;
+    font-weight: 800;
+    text-transform: capitalize;
 }
 
 .Notification__close {

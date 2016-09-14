@@ -1,5 +1,6 @@
 <template>
     <form class="Form">
+        {{ user | json }}
         <div class="Form__group">
             <div class="Form__field">
                 <label for="name">Name:</label>
@@ -39,13 +40,17 @@
         <div class="Form__group">
             <div class="Form__field">
                 <label for="residence">Residence:</label>
-                <input
-                    id="residence"
-                    autocomplete="off"
-                    type="number"
+                <select
+                    v-model="user.residence.data.id"
                     class="Form__field"
-                    placeholder="Recidence"
-                    v-model="user.residence.data.id">
+                    id="residence"
+                    name="residence"
+                >
+                    <option
+                        v-for="residence in residences"
+                        v-bind:value="residence.id"
+                        >{{ residence.identifier }}</option>
+                </select>
             </div>
         </div>
         <div class="Form__group">
@@ -63,6 +68,6 @@
      */
 
     export default {
-        props: ['user']
+        props: ['user', 'residences']
     };
 </script>

@@ -5,7 +5,7 @@
                 class="FormError__error"
                 v-for="error in errors"
                 transition="FormError__transition"
-                >{{ error.message }}</li>
+                >{{ error.title }}</li>
         </ul>
         <form class="Form" @submit.prevent="login()">
             <div class="Form__group">
