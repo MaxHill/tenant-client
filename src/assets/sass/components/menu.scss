@@ -1,94 +1,96 @@
 $menu-height: 55px;
 .Menu {
+    width: 100%;
+    overflow: hidden;
     background: $menu-color;
-    width: 100%;
-    overflow:hidden;
+
+    &--closed {
+        height: $menu-height;
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__section {
+        width: calc((100% - #{$menu-height}) * (1/2));
+        min-height: $menu-height; // ems? variable?
+    }
+
+    &__logo {
+        display: flex;
+        width: $menu-height;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__toggler {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__togglebutton {
+        display: flex;
+        width: $menu-height;
+        height: $menu-height;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__profile {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+
+    &__links {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    &__link {
+        display: inline-block;
+        width: 100%;
+        line-height: $menu-height;
+        color: $anakiwa;
+        text-align: center;
+        text-decoration: none;
+        &:hover,
+        &:active {
+            color: $cloud-burst;
+        }
+    }
 }
 
-.Menu--closed {
-    height: $menu-height; // ems? variable?
-}
-
-.Menu__container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.Menu__section {
-    width: calc((100% - #{$menu-height}) * (1/2));
-    min-height: $menu-height; // ems? variable?
-}
-
-.Menu__logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: $menu-height;
-}
-
-.Menu__toggler {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.Menu__toggleButton {
-    width: $menu-height;
-    height: $menu-height;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.Menu__profile {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.Menu__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-}
-
-.Menu__links {
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.Menu__link {
-    color: $anakiwa;
-    display: inline-block;
-    width: 100%;
-    line-height: $menu-height;
-    text-align: center;
-    text-decoration: none;
-}
-
-.Menu__link:hover,
-.Menu__link:active {
-    color: $cloud-burst;
-}
 
 @media (min-width: $break-small) {
-    .Menu__toggler {
-        display: none;
-    }
-    .Menu__links {
-        width: calc((100% - #{$menu-height}) * (1/2));
-        display:flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .Menu__logo {
-        width: $menu-height;
-    }
-    .Menu__link {
-        display: inline;
-        width: auto;
-        margin-left: 1rem;
+    .Menu {
+        &__toggler {
+            display: none;
+        }
+        &__links {
+            display: flex;
+            width: calc((100% - #{$menu-height}) * (1/2));
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+        &__logo {
+            width: $menu-height;
+        }
+        &__link {
+            display: inline;
+            width: auto;
+            margin-left: 1rem;
+        }
     }
 }

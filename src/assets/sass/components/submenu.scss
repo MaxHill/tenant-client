@@ -1,58 +1,58 @@
 .Submenu {
     width: 100%;
     background: $rhino;
-}
 
-.Submenu__container {
-    display:flex;
-    justify-content: center;
-    max-width:100%;
-}
+    .Submenu__container {
+        display: flex;
+        max-width: 100%;
+        justify-content: center;
+    }
 
-.Submenu__link {
-    flex:1;
-    padding: .7rem 1rem;
-    color: $danube;
-    text-decoration: none;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-bottom: 2px solid transparent;
-    transition: $transition-fast;
-}
+    .Submenu__link {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: .7rem 1rem;
+        color: $danube;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: $transition-fast;
+    }
 
-.Submenu__link--active,
-.Submenu__link:hover,
-.Submenu__link:active {
-    border-color: $brand-color;
-}
+    .Submenu__link--active,
+    .Submenu__link:hover,
+    .Submenu__link:active {
+        border-color: $brand-color;
+    }
 
-.Submenu__icon {
-    width: 20px;
-    height: 20px;
-    stroke: $brand-color;
-    fill: $brand-color;
-}
+    .Submenu__icon {
+        width: 20px;
+        height: 20px;
 
-.Submenu__text {
-    margin-top: 10px;
-    font-size: .6rem;
-    line-height: .6rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
+        stroke: $brand-color;
+        fill: $brand-color;
+    }
 
+    .Submenu__text {
+        margin-top: 10px;
+        font-size: .6rem;
+        font-weight: 600;
+        line-height: .6rem;
+        text-transform: uppercase;
+    }
+}
 
 @media (min-width: $break-small) {
     .Submenu__container {
-        justify-content: flex-end;
         max-width: 95%;
+        justify-content: flex-end;
     }
     .Submenu__link {
-        flex:0;
+        flex: 0;
+        padding: 1rem 1rem;
         font-size: .7rem;
         line-height: .7rem;
-        padding: 1rem 1rem;
     }
 }

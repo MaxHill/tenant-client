@@ -1,17 +1,19 @@
 .Form {
     width: 100%;
-}
-.Form__group {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    padding-right: 1rem;
-}
-.Form__field {
-    flex:1 350px;
-    padding: .5rem 0 .5rem 1rem;
-}
 
-.Form__submit {
-    margin-left: 1rem;
+    &__group {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        padding-right: 1rem;
+    }
+
+    &__field {
+        flex: 1 350px;
+        padding: .5rem 0 .5rem 1rem;
+    }
+
+    &__submit {
+        margin-left: 1rem;
+    }
 }
