@@ -2,9 +2,9 @@
     <div>
         <backlink link="user-list"></backlink>
         <loader v-if="loading"></loader>
-        <div class="Container EditUserPage Page" v-if="!loading">
+        <div class="Container EditUserPage Page Page--narrow" v-if="!loading">
             <img
-                class="EditUserPage__avatar"
+                class="rounded"
                 v-bind:src="user.avatar"
                 v-bind:alt="user.name">
             <user-form
@@ -72,7 +72,6 @@
                 });
             },
             update() {
-                console.log('update:', this.requestData);
                 this.userRepository.update(this.requestData);
             }
         },

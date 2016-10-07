@@ -10,8 +10,10 @@ export default class {
             page: false,
             include: false
         };
+
         this.path = path;
         this.resource = vue.$resource(this.path + '{/id}');
+        this.successMessage = '';
     }
 
     /**
@@ -34,14 +36,14 @@ export default class {
     /**
      * Create request.
      * @param  {Object} data Data to persist.
+     * @param  {Function} callback callback.
      * @return {Promise} Promise with error handled.
      */
     create(data) {
+        this.successMessage = 'Successfully created';
         return this.resource
             .save(data)
-            .then(data => {
-                this.emitSuccess(data, 'Succesfuly created');
-            })
+            .then(this.emitSuccess)
             .catch(this.emitError);
     }
 
@@ -51,11 +53,10 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     update(data) {
+        this.successMessage = 'Successfully updated';
         return this.resource
             .update({id: data.id}, data)
-            .then(data => {
-                this.emitSuccess(data, 'Succesfuly updated');
-            })
+            .then(this.emitSuccess)
             .catch(this.emitError);
     }
 
@@ -65,11 +66,10 @@ export default class {
      * @return {Promise} Promise with error handled.
      */
     delete(id) {
+        this.successMessage = 'Successfully deleted';
         return this.resource
             .delete(id)
-            .then(data => {
-                this.emitSuccess(data, 'Succesfuly deleted');
-            })
+            .then(this.emitSuccess)
             .catch(this.emitError);
     }
 
@@ -123,11 +123,10 @@ export default class {
     /**
      * Emit success to the application.
      * @param  {object} success Promise data to pass along.
-     * @param  {object} message Success message to display.
      * @return {Promise} Returns resolved promise.
      */
-    emitSuccess(success, message) {
-        Bus.$emit('Notification_success', message);
+    emitSuccess(success) {
+        Bus.$emit('Notification_success', this.successMessage);
         return Promise.resolve(success);
     }
 }

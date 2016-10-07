@@ -1,6 +1,5 @@
 <template>
     <form class="Form">
-        {{ user | json }}
         <div class="Form__group">
             <div class="Form__field">
                 <label for="name">Name:</label>

@@ -17,7 +17,7 @@
             return {
                 links: [
                     {name: 'Association', icon: 'logo', path: '/settings'},
-                    {name: 'Residence', icon: 'logo', path: '/settings/residence'},
+                    {name: 'Residence', icon: 'logo', path: '/settings/residences'},
                     {name: 'Users', icon: 'logo', path: '/settings/users'}
                 ]
             };

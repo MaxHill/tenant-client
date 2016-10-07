@@ -7,7 +7,9 @@ import UserList from './views/user/List';
 import UserEdit from './views/user/Edit';
 import UserCreate from './views/user/Create';
 import Association from './views/Association';
-import Residence from './views/Residence';
+import ResidenceList from './views/residence/List';
+import ResidenceEdit from './views/residence/Edit';
+import ResidenceCreate from './views/residence/Create';
 
 export default {
     '/': {
@@ -36,8 +38,17 @@ export default {
                 component: UserCreate,
                 name: 'user-create'
             },
-            '/residence': {
-                component: Residence
+            '/residences': {
+                component: ResidenceList,
+                name: 'residence-list'
+            },
+            '/residences/:id': {
+                component: ResidenceEdit,
+                name: 'residence-edit'
+            },
+            '/residences/create': {
+                component: ResidenceCreate,
+                name: 'residence-create'
             }
         }
     },

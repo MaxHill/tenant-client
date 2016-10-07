@@ -2,12 +2,10 @@
     <div class="Container Page">
         <loader v-if="loading"></loader>
         <div v-if="!loading" class="Cards">
-            <div class="Cards__card" v-for="user in users">
-                <img class="Cards__image" v-bind:src="user.avatar" v-bind:alt="user.name">
-                <h5 class="Cards__title">{{ user.name }}</h5>
-                <p class="Cards__subtitle">{{ user.email }}</p>
+            <div class="Cards__card" v-for="residence in residences">
+                <h5 class="Cards__title">{{ residence.identifier }}</h5>
                 <a
-                    v-link="{ name: 'user-edit', params: { id: user.id }}"
+                    v-link="{ name: 'residence-edit', params: { id: residence.id }}"
                     class="Cards__button Button Button--small">Edit</a>
             </div>
         </div>
@@ -15,27 +13,27 @@
 </template>
 
 <script>
-    import UserRepository from '../../repository/User';
+    import ResidenceRepository from '../../repository/Residence';
     import Loader from '../../components/Loader';
 
     /**
-     * List all users.
+     * List all residences.
      * @type {Object}
      */
     export default {
         data() {
             return {
                 loading: false,
-                userRepository: new UserRepository(),
-                users: []
+                residenceRepository: new ResidenceRepository(),
+                residences: []
             };
         },
         components: {Loader},
         ready() {
             this.loading = true;
-            this.userRepository.get().then(users => {
+            this.residenceRepository.get().then(residences => {
                 this.loading = false;
-                this.users = users.data.data;
+                this.residences = residences.data.data;
             });
         }
     };

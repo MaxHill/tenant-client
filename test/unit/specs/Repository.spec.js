@@ -143,7 +143,7 @@ describe('Repository', () => {
             sinon.stub(repo.resource, 'update'),
             sinon.stub(repo.resource, 'delete')
         ].forEach(stub => {
-            // Return rejected promises
+            // Return resolved promises
             stub.returns(Promise.resolve('Rejected from test'));
         });
 
@@ -159,6 +159,48 @@ describe('Repository', () => {
             sinon.assert.callCount(emitSpy, 3);
         }, () => {
             throw new Error('All promises was not rejected/resolved');
+        });
+    });
+
+    it('should be able to use double success handlers when creating', () => {
+        let emitSpy = sinon.stub(repo, 'emitSuccess')
+            .returns(Promise.resolve('Resolved from test'));
+
+        sinon
+            .stub(repo.resource, 'save')
+            .returns(Promise.resolve('Resolved from test'));
+
+        return repo.create({id: 1}).then(data => {
+            expect(data).to.equal('Resolved from test');
+            sinon.assert.callCount(emitSpy, 1);
+        });
+    });
+
+    it('should be able to use double success handlers when updating', () => {
+        let emitSpy = sinon.stub(repo, 'emitSuccess')
+            .returns(Promise.resolve('Resolved from test'));
+
+        sinon
+            .stub(repo.resource, 'update')
+            .returns(Promise.resolve('Resolved from test'));
+
+        return repo.update({id: 1}).then(data => {
+            expect(data).to.equal('Resolved from test');
+            sinon.assert.callCount(emitSpy, 1);
+        });
+    });
+
+    it('should be able to use double success handlers when deleting', () => {
+        let emitSpy = sinon.stub(repo, 'emitSuccess')
+            .returns(Promise.resolve('Resolved from test'));
+
+        sinon
+            .stub(repo.resource, 'delete')
+            .returns(Promise.resolve('Resolved from test'));
+
+        return repo.delete({id: 1}).then(data => {
+            expect(data).to.equal('Resolved from test');
+            sinon.assert.callCount(emitSpy, 1);
         });
     });
 });
