@@ -23,5 +23,8 @@ $transition-slow: all .4s cubic-bezier(.45,.01,.51,1);
 $break-small: 600px;
 $break-medium: 800px;
 
+$neat-break-small: new-breakpoint(min-width $break-small 4);
+$neat-break-medium: new-breakpoint(min-width $break-medium 4);
+
 // Sizes
 $menu-height: 55px;

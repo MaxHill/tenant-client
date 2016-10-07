@@ -1,13 +1,14 @@
 .Cards {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    @include outer-container;
 
     &__card {
+        @media (min-width: $break-small) {
+            @include span-columns(4);
+            @include omega(3n);
+            display: flex;
+        }
+
         display: flex;
-        width: 250px;
-        max-width: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
