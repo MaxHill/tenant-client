@@ -43,7 +43,7 @@ export default class {
         this.successMessage = 'Successfully created';
         return this.resource
             .save(data)
-            .then(this.emitSuccess)
+            .then(this.emitSuccess.bind(this))
             .catch(this.emitError);
     }
 
@@ -56,7 +56,7 @@ export default class {
         this.successMessage = 'Successfully updated';
         return this.resource
             .update({id: data.id}, data)
-            .then(this.emitSuccess)
+            .then(this.emitSuccess.bind(this))
             .catch(this.emitError);
     }
 
@@ -69,7 +69,7 @@ export default class {
         this.successMessage = 'Successfully deleted';
         return this.resource
             .delete(id)
-            .then(this.emitSuccess)
+            .then(this.emitSuccess.bind(this))
             .catch(this.emitError);
     }
 
@@ -85,7 +85,7 @@ export default class {
     }
 
     /*
-     * Iclude relationship
+     * Include relationship
      * @param {Array} relations Relation name.
      * @return {Class} Self for further chaining.
      */
@@ -113,7 +113,7 @@ export default class {
     /**
      * Emit error to the application.
      * @param  {object} error Error object given from the api.
-     * @return {Promise} Returns the rejected promise.
+     * @return {Promise} Returns the rejected promise for further chaining.
      */
     emitError(error) {
         Bus.$emit('Notification_error', error.data.errors);
@@ -123,7 +123,7 @@ export default class {
     /**
      * Emit success to the application.
      * @param  {object} success Promise data to pass along.
-     * @return {Promise} Returns resolved promise.
+     * @return {Promise} Returns resolved promise for further chaining.
      */
     emitSuccess(success) {
         Bus.$emit('Notification_success', this.successMessage);
