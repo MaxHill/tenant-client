@@ -2,6 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
+var neat = require('bourbon-neat').includePaths;
 
 module.exports = {
     entry: {
