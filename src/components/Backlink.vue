@@ -5,7 +5,7 @@
                 <svg class="Backlink__icon">
                     <use xlink:href='#chevron-left'>
                 </svg>
-                <span class="Backlink__text">Back</span>
+                <span class="Backlink__text"><slot>Back</slot></span>
             </a>
         </div>
     </div>
