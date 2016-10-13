@@ -8,16 +8,14 @@
                     @submit.prevent="updateAssociation"
                     :association="association">
             </association-form>
-            <ul>
-                <li>Name {{ association.name }}</li>
-                <li>
-                    Billing
-                    <ul>
-                        <li>Subscribe</li>
-                        <li>Change card</li>
-                    </ul>
-                </li>
-            </ul>
+
+            <br><br>
+
+            <p>
+                Depending on if association is subscribed. <br>
+                Sign up or update card.
+            </p>
+
         </div>
 
     </div>
@@ -43,7 +41,7 @@
         components: {Loader, AssociationForm},
         methods: {
             updateAssociation() {
-                console.log('Association', 'Time to update');
+                this.associationRepository.update(this.association);
             }
         },
         ready() {
