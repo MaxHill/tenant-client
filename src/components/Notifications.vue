@@ -2,8 +2,7 @@
    <ul class="Notification">
     <li
         class="Notification__item Notification__item--{{ notification.type }}"
-        v-for="notification in notifications"
-        v-if="!notification.closed"
+        v-for="notification in activeNotifications"
         transition="Notification"
         @click="close(notification)"
         >
@@ -30,6 +29,13 @@
             return {
                 notifications: []
             };
+        },
+        computed: {
+            activeNotifications() {
+                return this.notifications.filter(notification => {
+                    return !notification.closed;
+                });
+            }
         },
         methods: {
             close(notification) {

@@ -22,11 +22,6 @@
                 ]
             };
         },
-        components: {
-            Submenu
-        },
-        methods: {
-            // Methods
-        }
+        components: {Submenu}
     };
 </script>
